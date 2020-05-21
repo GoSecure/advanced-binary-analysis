@@ -19,7 +19,7 @@ to ensure that all the static assets are available.
 
 ## Usage
 
-Serve `html/` with your favorite built-in HTTP server:
+Serve `html/` with your favorite built-in HTTP server or navigate to the URL in the repository description.
 
 ```sh
 cd html && python3 -m http.server 8080
@@ -49,6 +49,21 @@ docker stop aba-workshop && docker rm aba-workshop
 docker rmi advanced-binary-analysis
 ```
 
+
+# Building Code Lab
+
+If you modify the code lab sources (`advanced-binary-analysis.md`) you will need to re-export the HTML. This can be done using [claat][2]:
+
+```sh
+claat export advanced-binary-analysis.md
+rm -rf html
+mv advanced-binary-analysis html
+```
+
+
+Keep in mind that LAB 2 and LAB 3 are duplicated and slightly edited versions of `labs/labs.ipynb` to make use of Code Lab's info and warning outlines, so if you modify either, you should keep the Jupyter Notebook in sync.
+
+[2]: https://github.com/googlecodelabs/tools/tree/master/claat
 
 
 # License
