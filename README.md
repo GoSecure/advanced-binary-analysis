@@ -49,3 +49,11 @@ docker stop aba-workshop && docker rm aba-workshop
 docker rmi advanced-binary-analysis
 ```
 
+
+
+# License
+
+- The code provided as part of the workshop is licensed under MIT.
+- The material (visual support, walkthrough, notes) is licensed under CC-BY-SA.
+
+See LICENSE for more details.
