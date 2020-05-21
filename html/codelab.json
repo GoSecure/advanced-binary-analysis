@@ -3,7 +3,7 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "2020-05-21T09:19:49-04:00",
+  "updated": "2020-05-21T13:53:53-04:00",
   "id": "advanced-binary-analysis",
   "duration": 145,
   "title": "Advanced Binary Analysis",
@@ -18,7 +18,7 @@
     "malware"
   ],
   "tags": [],
-  "feedback": "mailto:research@gosecure.net",
+  "feedback": "mailto:research[at]gosecure[dot]net",
   "ga": "UA-153352998-3",
   "url": "advanced-binary-analysis"
 }

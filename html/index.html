@@ -25,7 +25,7 @@
                   id="advanced-binary-analysis"
                   title="Advanced Binary Analysis"
                   environment="web"
-                  feedback-link="mailto:research@gosecure.net">
+                  feedback-link="mailto:research[at]gosecure[dot]net">
     
       <google-codelab-step label="Introduction" duration="5">
         <h2 is-upgraded>Format</h2>
@@ -49,7 +49,7 @@
 <ul>
 <li><a href="https://ghidra-sre.org/" target="_blank">Download Ghidra</a></li>
 <li><a href="https://nsec2020.nyc3.digitaloceanspaces.com/docker.tar.gz.zip" target="_blank">Download Docker Image</a></li>
-<li><a href="http://advanced-binary-analysis.gosec.co/sample.zip" target="_blank">Download Sample</a> (Password: infected)</li>
+<li><a href="https://nsec2020.nyc3.digitaloceanspaces.com/sample.zip" target="_blank">Download Sample</a> (Password: infected)</li>
 <li>Install Docker (and optionally docker-compose)</li>
 <li>Make sure you have a <a href="https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html" target="_blank">Java JDK</a> and the JDK&#39;s <code>bin/</code> directory on your <code>PATH</code>.</li>
 </ul>
@@ -84,7 +84,7 @@
 </ul>
 <h2 is-upgraded>Retrieving the Sample</h2>
 <p>Start by downloading the sample if you haven&#39;t already. The zip file is protected with the password &#34;infected&#34;, which is common to prevent anti-virus software from removing your samples. The file is not actually malicious, and we won&#39;t be executing the sample in this workshop.</p>
-<pre><code>wget http://advanced-binary-analysis.gosec.co/sample.zip
+<pre><code>wget https://nsec2020.nyc3.digitaloceanspaces.com/sample.zip
 unzip -P infected sample.zip
 </code></pre>
 <p>Normally after acquiring an unknown sample, it&#39;s a good idea to run a bit of initial reconaissance against it to get a sense for what it is.</p>

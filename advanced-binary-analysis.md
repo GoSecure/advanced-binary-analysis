@@ -38,7 +38,7 @@ There are only two hard requirements in order to follow along with the workshop:
 
 - [Download Ghidra](https://ghidra-sre.org/)
 - [Download Docker Image](https://nsec2020.nyc3.digitaloceanspaces.com/docker.tar.gz.zip)
-- [Download Sample](http://advanced-binary-analysis.gosec.co/sample.zip) (Password: infected)
+- [Download Sample](https://nsec2020.nyc3.digitaloceanspaces.com/sample.zip) (Password: infected)
 - Install Docker (and optionally docker-compose)
 - Make sure you have a [Java JDK][jdk] and the JDK's `bin/` directory on your `PATH`.
 
@@ -89,7 +89,7 @@ In this step, you will perform initial reconaissance work on the sample and get 
 Start by downloading the sample if you haven't already. The zip file is protected with the password "infected", which is common to prevent anti-virus software from removing your samples. The file is not actually malicious, and we won't be executing the sample in this workshop.
 
 ```shell
-wget http://advanced-binary-analysis.gosec.co/sample.zip
+wget https://nsec2020.nyc3.digitaloceanspaces.com/sample.zip
 unzip -P infected sample.zip
 ```
 
@@ -152,7 +152,7 @@ Import the binary using the `I` shortcut or navigate to **File > Import File...*
 
 After the binary is imported, Ghidra gives you a summary of the binary's metadata. This information gives you a quick overview of whether Ghidra has successfully resolved imports or not.
 
-![Successful file import dialog](img/000-ghidra-import-info.png)
+![Successful file import dialog](workshop/img/000-ghidra-import-info.png)
 
 Ghidra projects consist of one or more binary files which make up a single logical reverse engineering task. Having auxiliary binary files such as additional shared objects, unpacked files, and other binary blobs in the same project makes it possible to cross-reference them and keep everything in one tidy spot.
 
@@ -165,7 +165,7 @@ Do so now on the freshly imported `aba` file.
 
 When the Code Browser loads a new file, it will offer to perform automated analysis on it. For small binaries, this is usually a good option and deploying the full strength of Ghidra's analysis suite in these cases can greatly enhance the quality of information and facilitate the process of reverse engineering.
 
-![Automatic analysis prompt](img/001-ghidra-analysis-popup.png)
+![Automatic analysis prompt](workshop/img/001-ghidra-analysis-popup.png)
 
 In the case of larger binary files, analyses can become resource intensive and time consuming, making it necessary to selectively run analyses as needed.
 
@@ -176,7 +176,7 @@ After analysis, Ghidra will have identified and annotated a lot of data for you,
 Negative
 : It is important to understand that these analyses *are not perfect* and that malware authors are aware of them, and often try to break or alter the results to make their program's intent less obvious and make the analyst's (your) job harder.
 
-![Analysis configuration menu](img/002-analysis-prompt.png)
+![Analysis configuration menu](workshop/img/002-analysis-prompt.png)
 
 Positive
 : **OPTIONAL**
@@ -227,7 +227,7 @@ given block is. Compression and encryption, by their very nature, yield data wit
 Because compression and encryption are often used to hide data or code from curious people, identifying high entropy data and its
 cross-references is a good method to determine whether a sample is packed.
 
-![Ghidra's Entropy Annotation](img/002-entropy.png)
+![Ghidra's Entropy Annotation](workshop/img/002-entropy.png)
 
 Positive
 : **OPTIONAL**
@@ -255,7 +255,7 @@ People who are used to debugging might feel like all of this overhead would simp
 
 The table below shows some of the pros and cons for both analysis techniques.
 
-![Comparison of static and dynamic analysis pros and cons](img/000-technique-comparison.png)
+![Comparison of static and dynamic analysis pros and cons](workshop/img/000-technique-comparison.png)
 
 Despite code evaluation being considered a good thing for dynamic analysis as it makes inspecting state a lot easier, it can also be a major risk when performing malware analysis, since the malicious code will be running and infecting the system in which analysis runs.
 
@@ -307,27 +307,27 @@ Negative
 
 The actual instructions are interleaved with code that does not affect the outcome of the instructions. This is a basic technique which can be easily defeated when used on its own, but it is often enough to fool less experienced analysts. This technique becomes useful when combined with opaque predicates and metamorphic code.
 
-![Junk insertion](img/tech-junk-insertion.gif)
+![Junk insertion](workshop/img/tech-junk-insertion.gif)
 
 ### Metamorphic Code
 
 Metamorphic code is a technique which consists of expanding an instruction into a series of convoluted steps that yield the same result. It is an overarching theme of obfuscation and is at the core of several other techniques.
 
-![Metamorphic Code](img/tech-metamorphic.gif)
+![Metamorphic Code](workshop/img/tech-metamorphic.gif)
 
 
 ### Data Encoding
 
 Arithmetic operations and literal values are expanded in multiple obtuse computations that are equivalent to the original. This applies to strings as well by performing temporarily computing the decoded string for the duration of a call where it is required, and then wiping or re-encoding that memory after the call returns.
 
-![Data Encoding](img/tech-arithmetic.gif)
+![Data Encoding](workshop/img/tech-arithmetic.gif)
 
 
 ### Opaque Predicates
 
 Branches with a static outcome (i.e. always taken or never taken) are inserted in the code and the computation of the branch predicate is itself obfuscated. This technique explodes the code's cyclomatic complexity, and makes most decompilers generate horrible looking code.
 
-![Opaque Predicate Insertion](img/011-opaque-predicates.png)
+![Opaque Predicate Insertion](workshop/img/011-opaque-predicates.png)
 
 
 ### Splitting
@@ -336,7 +336,7 @@ Functions or basic blocks are split into smaller functions or blocks with uncond
 interleaved across the image, making it difficult for a human to keep track of the context/state of the function as it becomes
 impossible or very difficult to have a full-picture view of the code.
 
-![Block Splitting](img/012-splitting.png)
+![Block Splitting](workshop/img/012-splitting.png)
 
 Negative
 : When splitting, code is often scrambled or randomized to make the function less linear to the human eye.
@@ -346,7 +346,7 @@ Negative
 
 Transforms the logic flow of a function into a state machine which loops over the state and flattens all paths into a single dispatch table based on the state. Each branch updates the state according to the next branch. Flattening is similar in appearance to virtualization with the exception that there is no bytecode being interpreted.
 
-![Control Flow Flattening](img/tech-flattening.gif)
+![Control Flow Flattening](workshop/img/tech-flattening.gif)
 
 
 
@@ -625,7 +625,7 @@ Next, we peek into `maybe_process_data` and are greeted by a very messy-looking 
 
 The only thing we know for sure at this point is that the `main_data` buffer is passed as an argument to this function. The rest is hidden in what looks like a big switch case.
 
-![Ghidra's graph view failing](img/010-exploded-graph.png)
+![Ghidra's graph view failing](workshop/img/010-exploded-graph.png)
 
 We'll rely on a different feature of Ghidra to get a preliminary idea of what this function is doing, the call tree. To open it, click on the diagonal green arrow button next to the purple checkmark. This view displays cross-references as a list of inbound functions (functions calling this `maybe_process_data`) and outbound function calls (functions called by `maybe_process_data`). It is recursive, so if you expand one of the called functions, it will show you what functions are called from there, and so on.
 
@@ -1020,7 +1020,7 @@ Positive
 
 Recall from lab 1 that Ghidra has a useful view called the **Function Call Graph** which facilitates visualizing the functions called by a subfunction. This can significantly speed up the iterative process described above when possible:
 
-![Function Call Tree](img/005-function-call-tree.png)
+![Function Call Tree](workshop/img/005-function-call-tree.png)
 
 The next code snippet defines the remaining function stubs necessary for successful emulation. If you are curious, go ahead and skim through the code, otherwise you can safely skip to the next section.
 
@@ -1403,7 +1403,7 @@ Positive
 
 Using the Functions panel, right click to enable the "memory block" column, then filter for functions in the `unpacked` section. Sort by function size to identify interesting functions.
 
-![The Functions window](img/009-filtered-function-list.png)
+![The Functions window](workshop/img/009-filtered-function-list.png)
 
 
 #### Analyzing `FUN_420012BF`
