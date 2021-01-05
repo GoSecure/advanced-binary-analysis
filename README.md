@@ -1,10 +1,11 @@
 # Advanced Binary Analysis
 
-This repository contains the materials for the Advanced Binary
-Analysis workshop given by [@alxbl][1] at NorthSec 2020.
+This repository contains the materials for the Advanced Binary Analysis workshop given by [@alxbl][1] at NorthSec 2020.
 
+[Start the workshop][2]
 
 [1]: https://segfault.me
+[2]: https://gosecure.github.io/presentations/2020-05-15-advanced-binary-analysis/
 
 ## Install
 
@@ -52,7 +53,7 @@ docker rmi advanced-binary-analysis
 
 # Building Code Lab
 
-If you modify the code lab sources (`advanced-binary-analysis.md`) you will need to re-export the HTML. This can be done using [claat][2]:
+If you modify the code lab sources (`advanced-binary-analysis.md`) you will need to re-export the HTML. This can be done using [claat][3]:
 
 ```sh
 claat export advanced-binary-analysis.md
@@ -63,10 +64,12 @@ mv advanced-binary-analysis html
 
 Keep in mind that LAB 2 and LAB 3 are duplicated and slightly edited versions of `labs/labs.ipynb` to make use of Code Lab's info and warning outlines, so if you modify either, you should keep the Jupyter Notebook in sync.
 
-[2]: https://github.com/googlecodelabs/tools/tree/master/claat
+[3]: https://github.com/googlecodelabs/tools/tree/master/claat
 
 
 # License
+
+This workshop was created by the [GoSecure Research Team](https://www.gosecure.net/blog/). If you found a mistake and did fix, please create a PR to the [original repository](https://github.com/GoSecure/advanced-binary-analysis/).
 
 - The code provided as part of the workshop is licensed under MIT.
 - The material (visual support, walkthrough, notes) is licensed under CC-BY-SA.
