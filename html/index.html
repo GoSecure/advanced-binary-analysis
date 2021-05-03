@@ -1458,6 +1458,11 @@ python -m http.server 3000
   <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
   <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
   <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
-
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      document.getElementById("arrow-back").setAttribute("href", "https://github.com/GoSecure/advanced-binary-analysis/");
+      document.getElementById("done").setAttribute("href", "https://github.com/GoSecure/advanced-binary-analysis/");
+    });
+  </script>
 </body>
 </html>
